@@ -192,7 +192,98 @@
                 }
                 ?>
             </div>
-        
+            
+            <div class="container_lr_5_ex_1">
+                <h1>Лабораторная работа № 5</h1>
+                <h2>Вариант 24</h2>
+                <h3>Задача 1:</h3>
+                <p>Дан массив размера N. Найти количество участков, на которых его элементы убывают.</p>
+                <h3>Решение:</h3>
+                <form class="container_form_ex_1" action="index_lr_all.php" method="post">
+                    <label for="length">Введите длину массива:</label>
+                    <input type="number" name="length" id="length" required><br><br>
+                    <label for="array">Введите элементы массива через пробел:</label>
+                    <input type="text" name="array" id="array" required><br><br>
+                    <input type="submit" value="Выполнить">
+                </form>
+                <?php
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    // Получение данных из формы
+                    $n = (int)$_POST['length'];
+                    $input = trim($_POST['array']);
+                    $arr = explode(" ", $input);
+
+                    // Преобразование элементов массива в числа
+                    for ($i = 0; $i < $n; $i++) {
+                        $arr[$i] = (int)$arr[$i];
+                    }
+
+                    $count = 0;
+                    $isDecreasing = false;
+
+                    for ($i = 1; $i < $n; $i++) {
+                        if ($arr[$i] < $arr[$i - 1]) {
+                            if (!$isDecreasing) {
+                                $isDecreasing = true;
+                                $count++;
+                            }
+                        } else {
+                            $isDecreasing = false;
+                        }
+                    }
+
+                    echo "Количество участков, на которых элементы убывают: " . $count . "<BR>";
+                }
+                ?>
+
+            </div>
+
+            <div class="container_lr_5_ex_2">
+                <h3>Задача 2:</h3>
+                <p>Дан целочисленный массив размера N. Удалить из массива все одинаковые элементы, оставив их последние вхождения.</p>
+                <h3>Решение:</h3>
+                <form class="container_form_ex_2" action="index_lr_all.php" method="post">
+                    <label for="length">Введите длину массива:</label>
+                    <input type="number" name="length" id="length" required><br><br>
+                    <label for="array">Введите элементы массива через пробел:</label>
+                    <input type="text" name="array" id="array" required><br><br>
+                    <input type="submit" value="Выполнить">
+                </form>
+                <?php
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    // Получение данных из формы
+                    $n = (int)$_POST['length'];
+                    $input = trim($_POST['array']);
+                    $arr = explode(" ", $input);
+
+                    // Преобразование элементов массива в числа
+                    for ($i = 0; $i < $n; $i++) {
+                        $arr[$i] = (int)$arr[$i];
+                    }
+
+                    $lastOccurrences = [];
+                    $result = [];
+
+                    // Найти последние вхождения элементов
+                    for ($i = 0; $i < $n; $i++) {
+                        $lastOccurrences[$arr[$i]] = $i;
+                    }
+
+                    // Добавить элементы в результат, если они еще не были добавлены
+                    for ($i = 0; $i < $n; $i++) {
+                        if ($lastOccurrences[$arr[$i]] === $i) {
+                            $result[] = $arr[$i];
+                        }
+                    }
+
+                    echo "Массив после удаления дубликатов, оставил последние вхождения: ";
+                    for ($i = 0; $i < count($result); $i++) {
+                        echo $result[$i] . " ";
+                    }
+                }
+                ?>
+
+            </div>
 
             <footer>
                 <div class="footer">
