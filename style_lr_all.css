@@ -112,6 +112,18 @@ header {
     padding: 20px;
 }
 
+.container_lr_6_ex_2 {
+    flex: 1;
+    overflow: auto;
+    padding: 20px;
+}
+
+.container_lr_6_ex_1 {
+    flex: 1;
+    overflow: auto;
+    padding: 20px;
+}
+
 .container_form_ex_1 {
     background-color: #fff;
     padding: 20px;
