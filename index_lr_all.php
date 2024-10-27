@@ -372,6 +372,131 @@
 
             </div>
 
+            <div class="container_lr_7_ex_1">
+                <h1>Лабораторная работа № 7</h1>
+                <h2>Вариант 24</h2>
+                <h3>Задача 1:</h3>
+                <p>Написать функцию f(x), проверяющую, является ли число x простым. Если да, то вернуть 1, иначе – 0. Число называется простым, если имеет два делителя – 1 и само себя.</p>
+                <h3>Решение:</h3>
+                <?php
+                // Функция для проверки, является ли число простым
+                function isPrime($x) {
+                    // Проверка на отрицательные числа и 0
+                    if ($x <= 1) {
+                        return 0;
+                    }
+
+                    // Проверка на делители от 2 до sqrt($x)
+                    for ($i = 2; $i * $i <= $x; $i++) {
+                        if ($x % $i == 0) {
+                            return 0;
+                        }
+                    }
+
+                    return 1;
+                }
+
+                // Функция для проверки, является ли число простым, с использованием ссылки
+                function isPrimeByReference(&$x) {
+                    // Проверка на отрицательные числа и 0
+                    if ($x <= 1) {
+                        return 0;
+                    }
+
+                    // Проверка на делители от 2 до sqrt($x)
+                    for ($i = 2; $i * $i <= $x; $i++) {
+                        if ($x % $i == 0) {
+                            return 0;
+                        }
+                    }
+
+                    return 1;
+                }
+
+                // Пример использования функции с оператором return
+                $number = 248;
+                $result = isPrime($number);
+                echo "Число $number является простым(return): " . ($result ? '1' : '0') . "<br>";
+
+                // Пример использования функции с ссылкой
+                $number = 248;
+                $result = isPrimeByReference($number);
+                echo "Число $number является простым(ссылка): " . ($result ? '1' : '0') . "<br>";
+
+                // Пример использования функции с указателем 
+                function isPrimeByPointer(&$x) {
+                    // Проверка на отрицательные числа и 0
+                    if ($x <= 1) {
+                        return 0;
+                    }
+
+                    // Проверка на делители от 2 до sqrt($x)
+                    for ($i = 2; $i * $i <= $x; $i++) {
+                        if ($x % $i == 0) {
+                            return 0;
+                        }
+                    }
+
+                    return 1;
+                }
+
+                $number = 248;
+                $result = isPrimeByPointer($number);
+                echo "Число $number является простым(указатель): " . ($result ? '1' : '0') . "<br>";
+                ?>
+
+            </div>
+
+            <div class="container_lr_7_ex_2">
+                <h3>Задача 2:</h3>
+                <p>Для  любого  задания  лабораторных  работ №  5  и  №6  реализовать  ввод, формирование/обработку и вывод массивов с применением функций.</p>
+                <h3>Решение:</h3>
+                <div class="container_form_lr_7_ex_2">
+                    <form method="post" action="">
+                        <label for="array">Введите элементы массива через запятую:</label><br>
+                        <input type="text" id="array" name="array" required><br><br>
+                        <input type="submit" value="Отправить">
+                    </form>
+                </div>
+                <?php
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    $inputArray = $_POST['array'];
+                    $array = explode(',', $inputArray);
+
+                    // Проверка, что все элементы массива являются числами
+                    foreach ($array as $element) {
+                        if (!is_numeric($element)) {
+                            echo "<p>Ошибка: Все элементы массива должны быть числами.</p>";
+                            exit;
+                        }
+                    }
+
+                    // Функция для нахождения количества участков, на которых элементы убывают
+                    function countDecreasingSegments($array) {
+                        $count = 0;
+                        $isDecreasing = false;
+
+                        for ($i = 1; $i < count($array); $i++) {
+                            if ($array[$i] < $array[$i - 1]) {
+                                if (!$isDecreasing) {
+                                    $count++;
+                                    $isDecreasing = true;
+                                }
+                            } else {
+                                $isDecreasing = false;
+                            }
+                        }
+
+                        return $count;
+                    }
+
+                    $result = countDecreasingSegments($array);
+                    echo "<p>Количество участков, на которых элементы убывают: $result</p>";
+                }
+                ?>
+
+            </div>
+
             <footer>
                 <div class="footer">
                     <div class="row">
