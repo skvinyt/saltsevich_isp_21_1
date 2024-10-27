@@ -124,6 +124,27 @@ header {
     padding: 20px;
 }
 
+.container_lr_7_ex_1 {
+    flex: 1;
+    overflow: auto;
+    padding: 20px;
+}
+
+.container_lr_7_ex_2 {
+    flex: 1;
+    overflow: auto;
+    padding: 20px;
+}
+
+.container_form_lr_7_ex_2 {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
 .container_form_ex_1 {
     background-color: #fff;
     padding: 20px;
